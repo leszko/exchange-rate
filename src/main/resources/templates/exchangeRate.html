@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>
+
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</p>
+
+<form method="get">
+    <select name="currency">
+        <option th:each="currency:${currencies}"
+                th:text="${currency.name()}">None
+        </option>
+    </select>
+    <input type="date" name="date"/>
+    <input type="submit" value="Submit"/>
+</form>
+
+
+<p>
+
+<div th:if="${result != null}">
+    Result conversion:
+    <p th:text="${result}">empty</p>
+</div>
+</p>
+
+
+<table>
+    <tr th:each="historyElement:${history}">
+        <td th:text="${historyElement.getCreatedDate()}"/>
+        <td th:text="${historyElement.getDate()}"/>
+        <td th:text="${historyElement.getCurrency()}"/>
+        <td th:text="${historyElement.getExchangeRate()}"/>
+    </tr>
+</table>
+
+</body>
+</html>
