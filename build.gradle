@@ -9,9 +9,9 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin:'application'
 
 idea {
     module {
@@ -21,7 +21,7 @@ idea {
 }
 
 jar {
-    baseName = 'gs-serving-web-content'
+    baseName = 'zooplus-challenge'
     version = '0.1.0'
 }
 
@@ -53,3 +53,5 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+task stage(dependsOn: ['clean', 'build'])
