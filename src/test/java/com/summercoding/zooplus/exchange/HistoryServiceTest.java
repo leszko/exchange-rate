@@ -85,7 +85,7 @@ public class HistoryServiceTest {
         // then
         ArgumentCaptor<HistoryElement> captor = ArgumentCaptor.forClass(HistoryElement.class);
         verify(historyElementRepository).save(captor.capture());
-        assertThat(captor.getValue().getDate()).isEqualTo("current");
+        assertThat(captor.getValue().getDate()).isEqualTo("break test");
     }
 
     @Test
