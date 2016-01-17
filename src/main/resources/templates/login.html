@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Spring Security Example </title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Hello'"></head>
+
 <body>
+<div th:replace="layout :: navbar">(navbar)</div>
+
+<div class="container">
+    <div class="starter-template">
+        <h1>Spring MVC / Thymeleaf / Bootstrap</h1>
+
+        <p class="lead" th:text="${greeting}">(greeting)</p>
+
+        <p>The current time is <span th:text="${currentTime}">(time)</span></p>
+    </div>
+</div>
+
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
@@ -19,6 +29,8 @@
 <form th:action="@{/register}" method="get">
     <div><input type="submit" value="Register"/></div>
 </form>
+
+<span sec:authentication="name">Bob</span>
 
 </body>
 </html>
