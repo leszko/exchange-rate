@@ -1,8 +1,10 @@
 package com.summercoding.zooplus.exchange;
 
 import com.google.gson.JsonParser;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -10,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.math.BigDecimal;
 
 @Service
+@Slf4j
 class ExchangeRateService {
 
     private static final String URL_LIVE = "http://apilayer.net/api/live";
@@ -28,7 +31,10 @@ class ExchangeRateService {
         return requestExchangeRate(builder);
     }
 
+    @Cacheable("historicalExchangeRates")
     public BigDecimal historical(String currency, String date) {
+        log.info("Sending request to get historical exchange rates for currency: {} and date: {}.", currency, date);
+
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL_HISTORICAL)
                 .queryParam("access_key", key)
                 .queryParam("currencies", currency)
