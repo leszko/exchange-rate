@@ -1,6 +1,7 @@
 package com.summercoding.zooplus.exchange;
 
 import com.google.gson.JsonParser;
+import com.summercoding.zooplus.CacheConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,14 +27,14 @@ class ExchangeRateService {
 
     public BigDecimal live(String currency) {
         log.info("Sending request to get live exchange rates for currency: {}", currency);
-        
+
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL_LIVE)
                 .queryParam("access_key", key)
                 .queryParam("currencies", currency);
         return requestExchangeRate(builder);
     }
 
-    @Cacheable("historicalExchangeRates")
+    @Cacheable(CacheConfig.HISTORICAL_EXCHANGE_CACHE_NAME)
     public BigDecimal historical(String currency, String date) {
         log.info("Sending request to get historical exchange rates for currency: {} and date: {}", currency, date);
 

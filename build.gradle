@@ -48,6 +48,11 @@ dependencies {
 
     compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE")
 
+    compile("com.google.guava:guava:19.0")
+    compile("net.sf.ehcache:ehcache:2.10.1")
+
+    compile("org.springframework:spring-context-support:4.0.5.RELEASE")
+
     testCompile("junit:junit")
     testCompile("org.mockito:mockito-all:1.9.5")
     testCompile("com.google.truth:truth:0.28")
