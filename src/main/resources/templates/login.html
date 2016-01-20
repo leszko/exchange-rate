@@ -6,31 +6,27 @@
 
 <div class="container">
     <div class="starter-template">
-        <h1>Spring MVC / Thymeleaf / Bootstrap</h1>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
 
-        <p class="lead" th:text="${greeting}">(greeting)</p>
-
-        <p>The current time is <span th:text="${currentTime}">(time)</span></p>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label>Username: </label>
+                <input type="text" name="username"/>
+            </div>
+            <div class="form-group">
+                <label>Password: </label>
+                <input type="password" name="password"/>
+            </div>
+            <button type="submit" class="btn btn-primary navbar-btn">Login</button>
+        </form>
     </div>
 </div>
 
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
-
-<form th:action="@{/register}" method="get">
-    <div><input type="submit" value="Register"/></div>
-</form>
-
-<span sec:authentication="name">Bob</span>
 
 </body>
 </html>
