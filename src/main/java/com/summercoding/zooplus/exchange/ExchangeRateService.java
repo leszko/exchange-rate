@@ -25,6 +25,8 @@ class ExchangeRateService {
     private RestTemplate restTemplate;
 
     public BigDecimal live(String currency) {
+        log.info("Sending request to get live exchange rates for currency: {}", currency);
+        
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL_LIVE)
                 .queryParam("access_key", key)
                 .queryParam("currencies", currency);
@@ -33,7 +35,7 @@ class ExchangeRateService {
 
     @Cacheable("historicalExchangeRates")
     public BigDecimal historical(String currency, String date) {
-        log.info("Sending request to get historical exchange rates for currency: {} and date: {}.", currency, date);
+        log.info("Sending request to get historical exchange rates for currency: {} and date: {}", currency, date);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL_HISTORICAL)
                 .queryParam("access_key", key)

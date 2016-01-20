@@ -2,10 +2,12 @@ package com.summercoding.zooplus.register;
 
 import com.summercoding.zooplus.model.Account;
 import com.summercoding.zooplus.repository.AccountRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 class RegisterService {
 
@@ -25,6 +27,8 @@ class RegisterService {
         account.setStreet(registerForm.getStreet());
         account.setCountry(registerForm.getCountry());
         account.setZipCode(registerForm.getZipCode());
+
+        log.info("Registering account: {}", account);
 
         accountRepository.save(account);
     }

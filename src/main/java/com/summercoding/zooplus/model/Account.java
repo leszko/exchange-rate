@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-@ToString(of = "id")
+@ToString(of = {"id", "name"})
 @Data
 @Entity
 public class Account {
