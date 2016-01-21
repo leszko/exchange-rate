@@ -48,7 +48,7 @@ public class ExchangeRateControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("currencies", Currency.values()))
                 .andExpect(model().attribute("history", history))
-                .andExpect(view().name("exchangeRate"));
+                .andExpect(view().name("exchange"));
 
     }
 
@@ -67,7 +67,7 @@ public class ExchangeRateControllerTest {
                 .andExpect(model().attribute("result", liveExchangeRate))
                 .andExpect(model().attribute("currencies", Currency.values()))
                 .andExpect(model().attribute("history", history))
-                .andExpect(view().name("exchangeRate"));
+                .andExpect(view().name("exchange"));
         verify(historyService).storeInHistory(currency, null, liveExchangeRate);
     }
 
@@ -88,7 +88,7 @@ public class ExchangeRateControllerTest {
                 .andExpect(model().attribute("result", historicalExchangeRate))
                 .andExpect(model().attribute("currencies", Currency.values()))
                 .andExpect(model().attribute("history", history))
-                .andExpect(view().name("exchangeRate"));
+                .andExpect(view().name("exchange"));
         verify(historyService).storeInHistory(currency, date, historicalExchangeRate);
     }
 
