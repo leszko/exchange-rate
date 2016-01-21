@@ -48,7 +48,7 @@ public class ExchangeRateControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("currencies", Currency.values()))
                 .andExpect(model().attribute("history", history))
-                .andExpect(view().name("exchangea"));
+                .andExpect(view().name("exchange"));
 
     }
 
