@@ -31,11 +31,10 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {Application.class}, loader = SpringApplicationContextLoader.class)
 @WebAppConfiguration
 @IntegrationTest
-public class SampleStepDefinitions {
+public class StepDefinitions {
     private final static String SERVER = "http://localhost:8080/";
 
     private WebDriver browser = new FirefoxDriver();
