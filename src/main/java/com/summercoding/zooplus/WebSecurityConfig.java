@@ -2,6 +2,7 @@ package com.summercoding.zooplus;
 
 import com.summercoding.zooplus.security.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String MANAGEMENT_ROLE = "MANAGEMENT_ROLE";
+
+    @Value("${management.user.name}")
+    private String managementUserName;
+
+    @Value("${management.user.password}")
+    private String managementUserPassword;
+
+
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
@@ -26,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/webjars/bootstrap/**").permitAll()
                 .antMatchers("/webjars/jquery/**").permitAll()
+                .antMatchers("/management/**").hasRole(MANAGEMENT_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -38,6 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser(managementUserName).password(managementUserPassword).roles(MANAGEMENT_ROLE);
         auth.userDetailsService(userDetailService)
                 .passwordEncoder(bCryptPasswordEncoder);
     }

@@ -36,6 +36,7 @@ dependencies {
     compile("org.projectlombok:lombok:1.16.6")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.hibernate:hibernate-validator")
     compile("org.apache.tomcat.embed:tomcat-embed-el")
     compile("org.hibernate:hibernate-core:4.3.5.Final")
