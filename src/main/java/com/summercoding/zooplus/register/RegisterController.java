@@ -21,14 +21,14 @@ public class RegisterController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showForm(RegisterForm registerForm, Model model) {
         model.addAttribute("countries", countries());
-        return "registerAccount";
+        return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerFranek(@Valid RegisterForm registerForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("countries", countries());
-            return "registerAccount";
+            return "register";
         }
 
         registerService.registerUser(registerForm);

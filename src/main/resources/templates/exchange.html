@@ -15,13 +15,13 @@
 </p>
 
 <form method="get">
-    <select name="currency">
+    <select name="currency" id="currency">
         <option th:each="currency:${currencies}"
                 th:text="${currency.name()}">None
         </option>
     </select>
-    <input type="date" name="date"/>
-    <input type="submit" value="Submit"/>
+    <input type="date" id="date" name="date"/>
+    <input type="submit" id="submit" value="Submit"/>
 </form>
 
 

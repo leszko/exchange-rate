@@ -17,15 +17,15 @@ public class ExchangeRateController {
     @Autowired
     HistoryService historyService;
 
-    @RequestMapping(value = "/", params = {}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "exchange"}, params = {}, method = RequestMethod.GET)
     public String exchangeRate(Model model) {
         model.addAttribute("currencies", Currency.values());
         model.addAttribute("history", historyService.retrieveHistory());
 
-        return "exchangeRate";
+        return "exchange";
     }
 
-    @RequestMapping(value = "/", params = {"currency"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "exchange"}, params = {"currency"}, method = RequestMethod.GET)
     public String exchangeRate(@RequestParam String currency, @RequestParam(required = false) String date, Model model) {
         model.addAttribute("currencies", Currency.values());
         model.addAttribute("history", historyService.retrieveHistory());
@@ -34,7 +34,7 @@ public class ExchangeRateController {
         historyService.storeInHistory(currency, date, result);
         model.addAttribute("result", result);
 
-        return "exchangeRate";
+        return "exchange";
     }
 
     private BigDecimal exchangeRate(String currency, String date) {

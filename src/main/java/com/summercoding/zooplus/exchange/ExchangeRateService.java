@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 @Service
 @Slf4j
-class ExchangeRateService {
+public class ExchangeRateService {
 
     private static final String URL_LIVE = "http://apilayer.net/api/live";
     private static final String URL_HISTORICAL = "http://apilayer.net/api/historical";
