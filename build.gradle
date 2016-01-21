@@ -58,6 +58,10 @@ dependencies {
     testCompile("com.google.truth:truth:0.28")
     testCompile("org.springframework:spring-test")
 
+    testCompile('org.seleniumhq.selenium:selenium-java:2.49.0')
+    testCompile('org.seleniumhq.selenium:selenium-firefox-driver:2.49.0')
+
+
     testCompile("info.cukes:cucumber-java:1.2.4")
     testCompile("info.cukes:cucumber-junit:1.2.4")
     testCompile("info.cukes:cucumber-spring:1.2.4")
