@@ -20,16 +20,21 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="Submit">Submit</button>
         </form>
 
-        <p>
-
         <div th:if="${result != null}">
-            Result conversion:
-            <p th:text="${result}">empty</p>
+            <h3>Exchange rate:</h3>
+
+            <h3 th:text="${result}">empty</h3>
         </div>
-        </p>
 
-
-        <table>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Request Date</th>
+                <th>Exchange Rate Date</th>
+                <th>Currency</th>
+                <th>Exchange Rate</th>
+            </tr>
+            </thead>
             <tr th:each="historyElement:${history}">
                 <td th:text="${historyElement.getCreatedDate()}"/>
                 <td th:text="${historyElement.getDate()}"/>
@@ -37,7 +42,6 @@
                 <td th:text="${historyElement.getExchangeRate()}"/>
             </tr>
         </table>
-
     </div>
 </div>
 
