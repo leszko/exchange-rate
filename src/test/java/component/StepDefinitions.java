@@ -11,7 +11,6 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,7 +19,6 @@ import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -37,7 +35,7 @@ import static org.mockito.Mockito.mock;
 public class StepDefinitions {
     private final static String SERVER = "http://localhost:8080/";
 
-    private WebDriver browser = new FirefoxDriver();
+    private final WebDriver browser = new FirefoxDriver();
 
     @Autowired
     private HistoryElementRepository historyElementRepository;
