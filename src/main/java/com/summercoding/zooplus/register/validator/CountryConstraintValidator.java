@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Validator which checks if the country is supported.
+ */
 public class CountryConstraintValidator implements ConstraintValidator<Country, String> {
     private Set<String> countryNames = initializeCountrySet();
 

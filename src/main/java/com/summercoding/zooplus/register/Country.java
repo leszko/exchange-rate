@@ -3,6 +3,9 @@ package com.summercoding.zooplus.register;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * All supported countries.
+ */
 @Getter
 @AllArgsConstructor
 public enum Country {

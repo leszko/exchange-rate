@@ -12,6 +12,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
 
+/**
+ * Service retrieving currency rates from the external source: https://currencylayer.com.
+ * <p>
+ * Uses caching for historical results.
+ */
 @Service
 @Slf4j
 public class ExchangeRateService {

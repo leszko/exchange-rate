@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@ToString(of = "id")
+@ToString(of = {"id", "currency", "date"})
 @Data
 @Entity
 public class HistoryElement {
