@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HistoryServiceTest {
+    private final static int HISTORY_SIZE = 10;
+
     @Mock
     private AuthenticationNameProvider authenticationNameProvider;
 
@@ -45,6 +48,8 @@ public class HistoryServiceTest {
         String userName = "userName";
         given(authenticationNameProvider.authenticationName()).willReturn(userName);
         given(accountRepository.findByName(userName)).willReturn(account);
+
+        ReflectionTestUtils.setField(historyService, "historySize", HISTORY_SIZE);
     }
 
     @Test
