@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Validator which checks if the country is supported.
  */
-class CountryConstraintValidator implements ConstraintValidator<Country, String> {
+public class CountryConstraintValidator implements ConstraintValidator<Country, String> {
     private final Set<String> countryNames = initializeCountrySet();
 
 
