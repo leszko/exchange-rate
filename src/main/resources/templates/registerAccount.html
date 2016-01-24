@@ -5,62 +5,55 @@
 <div th:replace="layout :: navbar">(navbar)</div>
 
 <div class="container">
-    <div class="starter-template">
-        <form action="#" th:action="@{/register}" th:object="${registerForm}" method="post">
-            <table>
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" th:field="*{name}"/></td>
-                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" th:field="*{password}"/></td>
-                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" th:field="*{email}"/></td>
-                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Birth Date:</td>
-                    <td><input type="date" th:field="*{birthDate}"/></td>
-                    <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Street:</td>
-                    <td><input type="text" th:field="*{street}"/></td>
-                    <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Zip Code:</td>
-                    <td><input type="text" th:field="*{zipCode}"/></td>
-                    <td th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>City:</td>
-                    <td><input type="text" th:field="*{city}"/></td>
-                    <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Please select:</td>
-                    <td>
-                        <select name="country" th:field="*{country}">
-                            <option th:each="country:${countries}"
-                                    th:value="${country}"
-                                    th:text="${country}">None
-                            </option>
-                        </select>
-                    </td>
-                    <td th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="submit" type="submit">Submit</button>
-                    </td>
-                </tr>
-            </table>
+    <div class="main">
+
+        <form th:action="@{/register}" th:object="${registerForm}" method="post" class="form-default">
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="Name"/>
+
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid">Name Error</div>
+
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" th:field="*{password}" id="password" class="form-control" placeholder="Password"/>
+
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid">Name Error</div>
+
+            <label for="email" class="sr-only">Email</label>
+            <input type="text" th:field="*{email}" id="email" class="form-control" placeholder="Email"/>
+
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid">Name Error</div>
+
+            <label for="birthDate" class="sr-only">Email</label>
+            <input type="date" th:field="*{birthDate}" id="birthDate" class="form-control" placeholder="Birth Date"/>
+
+            <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" class="invalid">Name Error</div>
+
+            <label for="street" class="sr-only">Street</label>
+            <input type="text" th:field="*{street}" id="street" class="form-control" placeholder="Street"/>
+
+            <div th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="invalid">Name Error</div>
+
+            <label for="zipCode" class="sr-only">Zip Code</label>
+            <input type="text" th:field="*{zipCode}" id="zipCode" class="form-control" placeholder="Zip Code"/>
+
+            <div th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}" class="invalid">Name Error</div>
+
+            <label for="city" class="sr-only">City</label>
+            <input type="text" th:field="*{city}" id="city" class="form-control" placeholder="City"/>
+
+            <div th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="invalid">Name Error</div>
+
+            <label for="country" class="sr-only">Country</label>
+            <select id="country" name="country" th:field="*{country}" class="form-control" placeholder="Country">
+                <option th:each="country:${countries}"
+                        th:value="${country}"
+                        th:text="${country}">None
+                </option>
+            </select>
+
+            <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="invalid">Name Error</div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Register</button>
         </form>
     </div>
 </div>
