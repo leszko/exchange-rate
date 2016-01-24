@@ -1,47 +1,46 @@
-<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-</head>
+<head th:include="layout :: htmlhead" th:with="title='Hello'"></head>
+
 <body>
-<p>
+<div th:replace="layout :: navbar">(navbar)</div>
 
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<div class="container">
+    <div class="main">
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-</p>
+        <form method="get" class="form-default">
+            <select name="currency" id="currency" class="form-control" placeholder="Name">
+                <option th:each="currency:${currencies}"
+                        th:text="${currency.name()}">None
+                </option>
+            </select>
 
-<form method="get">
-    <select name="currency" id="currency">
-        <option th:each="currency:${currencies}"
-                th:text="${currency.name()}">None
-        </option>
-    </select>
-    <input type="date" id="date" name="date"/>
-    <input type="submit" id="submit" value="Submit"/>
-</form>
+            <label for="date" class="sr-only">Date</label>
+            <input type="date" id="date" name="date" class="form-control" placeholder="Date"/>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="Submit">Submit</button>
+        </form>
+
+        <p>
+
+        <div th:if="${result != null}">
+            Result conversion:
+            <p th:text="${result}">empty</p>
+        </div>
+        </p>
 
 
-<p>
+        <table>
+            <tr th:each="historyElement:${history}">
+                <td th:text="${historyElement.getCreatedDate()}"/>
+                <td th:text="${historyElement.getDate()}"/>
+                <td th:text="${historyElement.getCurrency()}"/>
+                <td th:text="${historyElement.getExchangeRate()}"/>
+            </tr>
+        </table>
 
-<div th:if="${result != null}">
-    Result conversion:
-    <p th:text="${result}">empty</p>
+    </div>
 </div>
-</p>
 
-
-<table>
-    <tr th:each="historyElement:${history}">
-        <td th:text="${historyElement.getCreatedDate()}"/>
-        <td th:text="${historyElement.getDate()}"/>
-        <td th:text="${historyElement.getCurrency()}"/>
-        <td th:text="${historyElement.getExchangeRate()}"/>
-    </tr>
-</table>
 
 </body>
 </html>
