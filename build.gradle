@@ -72,8 +72,12 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-task stage(dependsOn: ['clean', 'build'])
+task componentTest(type: Test) {
+    include '**/component/**'
+}
 
-task unitTest(type: Test) {
+test {
     exclude '**/component/**'
 }
+
+task stage(dependsOn: ['build'])
