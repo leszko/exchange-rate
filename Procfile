@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar build/libs/zooplus-challenge-0.1.0.jar
+web: java -Dserver.port=$PORT -jar build/libs/exchange-rate-0.1.0.jar

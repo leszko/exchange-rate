@@ -20,7 +20,7 @@ idea {
 }
 
 jar {
-    baseName = 'zooplus-challenge'
+    baseName = 'exchange-rate'
     version = '0.1.0'
 }
 
