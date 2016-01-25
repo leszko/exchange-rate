@@ -23,9 +23,11 @@
                 <li><a href="/register">Register</a></li>
                 <li sec:authorize="!isAuthenticated()"><a href="/login">Log in</a></li>
             </ul>
-            <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
-                <li><a href="/register">Log out</a></li>
-            </ul>
+            <form th:action="@{/logout}" method="post" id="logoutForm">
+                <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
+                    <li><a href="#" onclick="document.getElementById('logoutForm').submit()">Log Out</a></li>
+                </ul>
+            </form>
         </div>
     </div>
 </div>
