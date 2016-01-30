@@ -19,19 +19,19 @@ public class RegisterController {
     private RegisterService registerService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String showForm(RegisterForm registerForm, Model model) {
+    public String showForm(RegisterDto registerDto, Model model) {
         model.addAttribute("countries", countries());
         return "registerAccount";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerFranek(@Valid RegisterForm registerForm, BindingResult bindingResult, Model model) {
+    public String register(@Valid RegisterDto registerDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("countries", countries());
             return "registerAccount";
         }
 
-        registerService.registerUser(registerForm);
+        registerService.registerUser(registerDto);
 
         return "redirect:/";
     }

@@ -63,6 +63,6 @@ public class RegisterControllerTest {
                 .param("country", "Germany"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/"));
-        verify(registerService).registerUser(any(RegisterForm.class));
+        verify(registerService).registerUser(any(RegisterDto.class));
     }
 }

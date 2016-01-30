@@ -1,4 +1,4 @@
-package com.summercoding.zooplus;
+package com.summercoding.zooplus.config;
 
 import com.summercoding.zooplus.security.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/images/**").permitAll()
-                .antMatchers("/webjars/bootstrap/**").permitAll()
-                .antMatchers("/webjars/jquery/**").permitAll()
+                .antMatchers(
+                        "/register",
+                        "/css/**",
+                        "/images/**",
+                        "/webjars/bootstrap/**",
+                        "/webjars/jquery/**"
+                ).permitAll()
                 .antMatchers("/management/**").hasRole(MANAGEMENT_ROLE)
                 .anyRequest().authenticated()
                 .and()

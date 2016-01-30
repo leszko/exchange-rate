@@ -7,7 +7,7 @@
 <div class="container">
     <div class="main">
 
-        <form th:action="@{/register}" th:object="${registerForm}" method="post" class="form-default">
+        <form th:action="@{/register}" th:object="${registerDto}" method="post" class="form-default">
             <label for="name" class="sr-only">Name</label>
             <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="Name"/>
 

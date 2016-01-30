@@ -1,8 +1,8 @@
 package com.summercoding.zooplus.exchange;
 
-import com.summercoding.zooplus.model.Account;
-import com.summercoding.zooplus.model.HistoryElement;
-import com.summercoding.zooplus.repository.AccountRepository;
+import com.summercoding.zooplus.model.User;
+import com.summercoding.zooplus.model.ExchangeRateRequest;
+import com.summercoding.zooplus.repository.UserRepository;
 import com.summercoding.zooplus.repository.HistoryElementRepository;
 import com.summercoding.zooplus.security.AuthenticationNameProvider;
 import org.junit.Before;
@@ -32,13 +32,13 @@ public class HistoryServiceTest {
     private AuthenticationNameProvider authenticationNameProvider;
 
     @Mock
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @Mock
     HistoryElementRepository historyElementRepository;
 
     @Mock
-    private Account account;
+    private User user;
 
     @InjectMocks
     private HistoryService historyService;
@@ -47,7 +47,7 @@ public class HistoryServiceTest {
     public void before() {
         String userName = "userName";
         given(authenticationNameProvider.authenticationName()).willReturn(userName);
-        given(accountRepository.findByName(userName)).willReturn(account);
+        given(userRepository.findByName(userName)).willReturn(user);
 
         ReflectionTestUtils.setField(historyService, "historySize", HISTORY_SIZE);
     }
@@ -55,22 +55,22 @@ public class HistoryServiceTest {
     @Test
     public void Should_StoreHistoryElement() {
         // given
-        given(account.getHistory()).willReturn(Collections.emptyList());
+        given(user.getHistory()).willReturn(Collections.emptyList());
 
         // when
         historyService.storeInHistory("USD", "2015-01-01", new BigDecimal("1.1"));
 
         // then
-        verify(historyElementRepository).save(any(HistoryElement.class));
+        verify(historyElementRepository).save(any(ExchangeRateRequest.class));
     }
 
     @Test
     public void Should_RemoveLastHistoryElement_When_TooManyHistoryElements() {
         // given
-        List<HistoryElement> history = createHistoryElements(9);
-        HistoryElement last = createHistoryElementWithId(10);
+        List<ExchangeRateRequest> history = createHistoryElements(9);
+        ExchangeRateRequest last = createHistoryElementWithId(10);
         history.add(last);
-        given(account.getHistory()).willReturn(history);
+        given(user.getHistory()).willReturn(history);
 
         // when
         historyService.storeInHistory("USD", "2015-01-01", new BigDecimal("1.1"));
@@ -82,13 +82,13 @@ public class HistoryServiceTest {
     @Test
     public void Should_StoreHistoryElementWithCurrentDate_When_NoDateGiven() {
         // given
-        given(account.getHistory()).willReturn(Collections.emptyList());
+        given(user.getHistory()).willReturn(Collections.emptyList());
 
         // when
         historyService.storeInHistory("USD", null, new BigDecimal("1.1"));
 
         // then
-        ArgumentCaptor<HistoryElement> captor = ArgumentCaptor.forClass(HistoryElement.class);
+        ArgumentCaptor<ExchangeRateRequest> captor = ArgumentCaptor.forClass(ExchangeRateRequest.class);
         verify(historyElementRepository).save(captor.capture());
         assertThat(captor.getValue().getDate()).isEqualTo("current");
     }
@@ -96,27 +96,27 @@ public class HistoryServiceTest {
     @Test
     public void Should_RetrieveHistory() {
         // given
-        List<HistoryElement> history = createHistoryElements(1);
-        given(account.getHistory()).willReturn(history);
+        List<ExchangeRateRequest> history = createHistoryElements(1);
+        given(user.getHistory()).willReturn(history);
 
         // when
-        List<HistoryElement> result = historyService.retrieveHistory();
+        List<ExchangeRateRequest> result = historyService.retrieveHistory();
 
         // then
         assertThat(result).isEqualTo(history);
     }
 
-    private static List<HistoryElement> createHistoryElements(int n) {
-        List<HistoryElement> result = new ArrayList<>();
+    private static List<ExchangeRateRequest> createHistoryElements(int n) {
+        List<ExchangeRateRequest> result = new ArrayList<>();
         for (long i = 0; i < n; i++) {
-            HistoryElement element = createHistoryElementWithId(i);
+            ExchangeRateRequest element = createHistoryElementWithId(i);
             result.add(element);
         }
         return result;
     }
 
-    private static HistoryElement createHistoryElementWithId(long id) {
-        HistoryElement element = new HistoryElement();
+    private static ExchangeRateRequest createHistoryElementWithId(long id) {
+        ExchangeRateRequest element = new ExchangeRateRequest();
         element.setId(id);
         return element;
     }

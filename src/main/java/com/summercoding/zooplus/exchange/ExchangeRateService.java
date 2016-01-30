@@ -1,7 +1,7 @@
 package com.summercoding.zooplus.exchange;
 
 import com.google.gson.JsonParser;
-import com.summercoding.zooplus.CacheConfig;
+import com.summercoding.zooplus.config.CacheConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

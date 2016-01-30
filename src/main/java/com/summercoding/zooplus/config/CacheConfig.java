@@ -1,4 +1,4 @@
-package com.summercoding.zooplus;
+package com.summercoding.zooplus.config;
 
 import net.sf.ehcache.config.CacheConfiguration;
 import org.springframework.beans.factory.annotation.Value;

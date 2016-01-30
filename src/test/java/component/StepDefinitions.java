@@ -3,8 +3,8 @@ package component;
 import com.summercoding.zooplus.Application;
 import com.summercoding.zooplus.exchange.ExchangeRateController;
 import com.summercoding.zooplus.exchange.ExchangeRateService;
-import com.summercoding.zooplus.model.Account;
-import com.summercoding.zooplus.repository.AccountRepository;
+import com.summercoding.zooplus.model.User;
+import com.summercoding.zooplus.repository.UserRepository;
 import com.summercoding.zooplus.repository.HistoryElementRepository;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -41,7 +41,7 @@ public class StepDefinitions {
     private HistoryElementRepository historyElementRepository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -59,7 +59,7 @@ public class StepDefinitions {
     @After
     public void after() {
         historyElementRepository.deleteAll();
-        accountRepository.deleteAll();
+        userRepository.deleteAll();
         browser.close();
     }
 
@@ -80,12 +80,12 @@ public class StepDefinitions {
 
     @Then("^User (.*) should be registered$")
     public void User_should_be_registered(String name) throws Throwable {
-        assertThat(accountRepository.findByName(name)).isNotNull();
+        assertThat(userRepository.findByName(name)).isNotNull();
     }
 
     @Then("^User (.*) should not be registered$")
     public void User_should_not_be_registered(String name) throws Throwable {
-        assertThat(accountRepository.findByName(name)).isNull();
+        assertThat(userRepository.findByName(name)).isNull();
     }
 
     @Then("^Page (.*) is displayed$")
@@ -95,17 +95,17 @@ public class StepDefinitions {
 
     @Given("^User with name: '(.*)' and password: '(.*)' is registered$")
     public void User_with_name_and_password_is_registered(String name, String password) throws Throwable {
-        Account account = new Account();
-        account.setName(name);
-        account.setPassword(bCryptPasswordEncoder.encode(password));
-        account.setBirthDate(new Date());
-        account.setCity("city");
-        account.setCountry("country");
-        account.setEmail("test@test.com");
-        account.setStreet("street");
-        account.setZipCode("zip-code");
+        User user = new User();
+        user.setName(name);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setBirthDate(new Date());
+        user.setCity("city");
+        user.setCountry("country");
+        user.setEmail("test@test.com");
+        user.setStreet("street");
+        user.setZipCode("zip-code");
 
-        accountRepository.save(account);
+        userRepository.save(user);
     }
 
     @Given("^User is logged in$")

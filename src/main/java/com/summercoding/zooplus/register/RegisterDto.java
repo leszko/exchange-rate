@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
-class RegisterForm {
+class RegisterDto {
     @Size(min = 2, max = 30)
     private String name;
 

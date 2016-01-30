@@ -10,7 +10,7 @@ import java.util.Date;
 @ToString(of = {"id", "currency", "date"})
 @Data
 @Entity
-public class HistoryElement {
+public class ExchangeRateRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -28,6 +28,6 @@ public class HistoryElement {
     private Date createdDate = new Date();
 
     @ManyToOne
-    @JoinColumn(name = "account")
-    private Account account;
+    @JoinColumn(name = "user")
+    private User user;
 }

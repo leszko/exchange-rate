@@ -11,7 +11,7 @@ import java.util.List;
 @ToString(of = {"id", "name"})
 @Data
 @Entity
-public class Account {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,7 +41,7 @@ public class Account {
     @Column
     private String country;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "user")
     @OrderBy("created_date DESC")
-    private List<HistoryElement> history = new LinkedList<>();
+    private List<ExchangeRateRequest> history = new LinkedList<>();
 }

@@ -1,6 +1,6 @@
 package com.summercoding.zooplus.exchange;
 
-import com.summercoding.zooplus.model.HistoryElement;
+import com.summercoding.zooplus.model.ExchangeRateRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class ExchangeRateControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private List<HistoryElement> history;
+    private List<ExchangeRateRequest> history;
 
     @Before
     public void before() {

@@ -1,8 +1,8 @@
 package com.summercoding.zooplus.exchange;
 
-import com.summercoding.zooplus.model.Account;
-import com.summercoding.zooplus.model.HistoryElement;
-import com.summercoding.zooplus.repository.AccountRepository;
+import com.summercoding.zooplus.model.User;
+import com.summercoding.zooplus.model.ExchangeRateRequest;
+import com.summercoding.zooplus.repository.UserRepository;
 import com.summercoding.zooplus.repository.HistoryElementRepository;
 import com.summercoding.zooplus.security.AuthenticationNameProvider;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ class HistoryService {
     AuthenticationNameProvider authenticationNameProvider;
 
     @Autowired
-    AccountRepository accountRepository;
+    UserRepository userRepository;
 
     @Autowired
     HistoryElementRepository historyElementRepository;
@@ -35,16 +35,16 @@ class HistoryService {
     public void storeInHistory(String currency, String date, BigDecimal exchangeRate) {
         log.info("Storing query in the history with currency: {}, date: {}, exchange rate: {}", currency, date, exchangeRate);
 
-        Account account = currentAccount();
+        User user = currentAccount();
 
-        List<HistoryElement> history = account.getHistory();
+        List<ExchangeRateRequest> history = user.getHistory();
         removeLastHistoryElementIfSizeExceeded(history);
-        addToHistory(currency, date, exchangeRate, account);
+        addToHistory(currency, date, exchangeRate, user);
     }
 
-    private void removeLastHistoryElementIfSizeExceeded(List<HistoryElement> history) {
+    private void removeLastHistoryElementIfSizeExceeded(List<ExchangeRateRequest> history) {
         if (history.size() >= historySize) {
-            HistoryElement last = history.remove(history.size() - 1);
+            ExchangeRateRequest last = history.remove(history.size() - 1);
 
             log.info("History size exceeds maximum size, removing the oldest query: {}", last);
 
@@ -52,12 +52,12 @@ class HistoryService {
         }
     }
 
-    private void addToHistory(String currency, String date, BigDecimal exchangeRate, Account account) {
-        HistoryElement historyElement = new HistoryElement();
+    private void addToHistory(String currency, String date, BigDecimal exchangeRate, User user) {
+        ExchangeRateRequest historyElement = new ExchangeRateRequest();
         historyElement.setCurrency(currency);
         historyElement.setDate(toCurrentIfNullOrEmpty(date));
         historyElement.setExchangeRate(exchangeRate);
-        historyElement.setAccount(account);
+        historyElement.setUser(user);
 
         historyElementRepository.save(historyElement);
     }
@@ -69,13 +69,13 @@ class HistoryService {
         return date;
     }
 
-    public List<HistoryElement> retrieveHistory() {
-        Account account = currentAccount();
-        return new ArrayList<>(account.getHistory());
+    public List<ExchangeRateRequest> retrieveHistory() {
+        User user = currentAccount();
+        return new ArrayList<>(user.getHistory());
     }
 
-    private Account currentAccount() {
+    private User currentAccount() {
         String accountName = authenticationNameProvider.authenticationName();
-        return accountRepository.findByName(accountName);
+        return userRepository.findByName(accountName);
     }
 }

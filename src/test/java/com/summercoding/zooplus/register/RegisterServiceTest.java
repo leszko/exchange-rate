@@ -1,7 +1,7 @@
 package com.summercoding.zooplus.register;
 
-import com.summercoding.zooplus.model.Account;
-import com.summercoding.zooplus.repository.AccountRepository;
+import com.summercoding.zooplus.model.User;
+import com.summercoding.zooplus.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -20,7 +20,7 @@ public class RegisterServiceTest {
     private static final String ENCRYPTED = "encrypted";
 
     @Mock
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @Mock
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -33,15 +33,15 @@ public class RegisterServiceTest {
         // given
         given(bCryptPasswordEncoder.encode(PASSWORD)).willReturn(ENCRYPTED);
 
-        RegisterForm registerForm = new RegisterForm();
-        registerForm.setPassword(PASSWORD);
+        RegisterDto registerDto = new RegisterDto();
+        registerDto.setPassword(PASSWORD);
 
         // when
-        registerService.registerUser(registerForm);
+        registerService.registerUser(registerDto);
 
         // then
-        ArgumentCaptor<Account> captor = ArgumentCaptor.forClass(Account.class);
-        verify(accountRepository).save(captor.capture());
+        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+        verify(userRepository).save(captor.capture());
         assertThat(captor.getValue().getPassword()).isEqualTo(ENCRYPTED);
     }
 }
