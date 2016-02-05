@@ -1,10 +1,11 @@
-package com.summercoding.zooplus.exchange;
+package com.summercoding.zooplus.service;
 
 import com.summercoding.zooplus.model.User;
 import com.summercoding.zooplus.model.ExchangeRateRequest;
 import com.summercoding.zooplus.repository.UserRepository;
 import com.summercoding.zooplus.repository.HistoryElementRepository;
 import com.summercoding.zooplus.security.AuthenticationNameProvider;
+import com.summercoding.zooplus.service.HistoryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

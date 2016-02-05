@@ -1,5 +1,6 @@
-package com.summercoding.zooplus.register;
+package com.summercoding.zooplus.service;
 
+import com.summercoding.zooplus.dto.RegisterDto;
 import com.summercoding.zooplus.model.User;
 import com.summercoding.zooplus.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-class RegisterService {
+public class RegisterService {
 
     @Autowired
     private UserRepository userRepository;

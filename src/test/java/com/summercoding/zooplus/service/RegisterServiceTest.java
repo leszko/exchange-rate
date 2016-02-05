@@ -1,7 +1,9 @@
-package com.summercoding.zooplus.register;
+package com.summercoding.zooplus.service;
 
+import com.summercoding.zooplus.dto.RegisterDto;
 import com.summercoding.zooplus.model.User;
 import com.summercoding.zooplus.repository.UserRepository;
+import com.summercoding.zooplus.service.RegisterService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

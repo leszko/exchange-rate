@@ -1,4 +1,4 @@
-package com.summercoding.zooplus.register;
+package com.summercoding.zooplus.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.summercoding.zooplus.exchange;
+package com.summercoding.zooplus.service;
 
 import com.google.gson.JsonParser;
 import com.summercoding.zooplus.config.CacheConfig;

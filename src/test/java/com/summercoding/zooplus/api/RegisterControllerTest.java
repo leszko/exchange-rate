@@ -1,5 +1,8 @@
-package com.summercoding.zooplus.register;
+package com.summercoding.zooplus.api;
 
+import com.summercoding.zooplus.api.RegisterController;
+import com.summercoding.zooplus.dto.RegisterDto;
+import com.summercoding.zooplus.service.RegisterService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,8 @@
 package component;
 
 import com.summercoding.zooplus.Application;
-import com.summercoding.zooplus.exchange.ExchangeRateController;
-import com.summercoding.zooplus.exchange.ExchangeRateService;
+import com.summercoding.zooplus.api.ExchangeRateController;
+import com.summercoding.zooplus.service.ExchangeRateService;
 import com.summercoding.zooplus.model.User;
 import com.summercoding.zooplus.repository.UserRepository;
 import com.summercoding.zooplus.repository.HistoryElementRepository;

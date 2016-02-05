@@ -1,5 +1,6 @@
-package com.summercoding.zooplus.exchange;
+package com.summercoding.zooplus.service;
 
+import com.summercoding.zooplus.service.ExchangeRateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

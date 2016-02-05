@@ -1,4 +1,4 @@
-package com.summercoding.zooplus.exchange;
+package com.summercoding.zooplus.constant;
 
 /**
  * All currencies available for the user.

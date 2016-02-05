@@ -1,4 +1,4 @@
-package com.summercoding.zooplus.exchange;
+package com.summercoding.zooplus.service;
 
 import com.summercoding.zooplus.model.User;
 import com.summercoding.zooplus.model.ExchangeRateRequest;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-class HistoryService {
+public class HistoryService {
     @Value("${history.size}")
     private int historySize;
 

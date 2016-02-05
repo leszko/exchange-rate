@@ -1,4 +1,4 @@
-package com.summercoding.zooplus.register.validator;
+package com.summercoding.zooplus.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

@@ -1,6 +1,10 @@
-package com.summercoding.zooplus.exchange;
+package com.summercoding.zooplus.api;
 
+import com.summercoding.zooplus.api.ExchangeRateController;
+import com.summercoding.zooplus.constant.Currency;
 import com.summercoding.zooplus.model.ExchangeRateRequest;
+import com.summercoding.zooplus.service.ExchangeRateService;
+import com.summercoding.zooplus.service.HistoryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

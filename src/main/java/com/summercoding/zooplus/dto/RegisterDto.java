@@ -1,6 +1,6 @@
-package com.summercoding.zooplus.register;
+package com.summercoding.zooplus.dto;
 
-import com.summercoding.zooplus.register.validator.Country;
+import com.summercoding.zooplus.validator.Country;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
-class RegisterDto {
+public class RegisterDto {
     @Size(min = 2, max = 30)
     private String name;
 

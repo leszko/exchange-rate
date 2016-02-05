@@ -1,4 +1,4 @@
-package com.summercoding.zooplus.register.validator;
+package com.summercoding.zooplus.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -23,7 +23,7 @@ public class CountryConstraintValidator implements ConstraintValidator<Country, 
     }
 
     private static Set<String> initializeCountrySet() {
-        return Arrays.stream(com.summercoding.zooplus.register.Country.values())
+        return Arrays.stream(com.summercoding.zooplus.constant.Country.values())
                 .map(country -> country.getName())
                 .collect(Collectors.toSet());
     }
